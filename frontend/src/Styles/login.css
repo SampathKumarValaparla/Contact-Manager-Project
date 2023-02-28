@@ -1,0 +1,84 @@
+#circle1 {
+  height: 7cm;
+  width: 7cm;
+  border-radius: 50%;
+  background-color: #2da5fc;
+  position: fixed;
+  top: -01cm;
+  left: -01cm;
+  display: inline-block
+}
+
+#circle2 {
+    height: 7cm;
+    width: 7cm;
+    border-radius: 50%;
+    background-color: #2da5fc;
+    position: fixed;
+    bottom: -01cm;
+    right: -01cm;
+    display: inline-block
+  }
+
+  #box {
+    background-color: aqua;
+    margin: 2cm;
+    height: 12cm;
+    width: 27.5cm;
+  }
+
+  .dot {
+    background-color: #2da5fc;
+    height: 15px;
+    width : 15px;
+    border-radius: 50%;
+    display : inline-block;
+    margin: 5px;
+  }
+
+  #pattern1 {
+    position: absolute;
+    top:2cm;
+    right:13px;
+    height: 6.5cm;
+    width: 6cm;
+    padding: 12px;
+  }
+
+  #pattern2 {
+    position: absolute;
+    bottom:1px;
+    left: 2cm;
+    height: 6.5cm;
+    width: 6cm;
+    padding: 12px;
+  }
+
+  #login_form {
+    align-content: center;
+    top: 3cm;
+    background-color: aqua;
+    left :11cm;
+    position: fixed;
+    text-align: center;
+    height : 8cm;
+  }
+
+  h4 {
+    width:8cm;
+  }
+
+  input {
+    margin: 5px;
+  }
+
+  button {
+    width : 4.5cm;
+    margin: 5px;
+    border: 0;
+  }
+
+  #login_but {
+    background-color: #2da5fc;
+    margin-top : 1cm;
+  }
