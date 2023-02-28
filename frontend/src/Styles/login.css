@@ -1,3 +1,16 @@
+#login {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.design {
+  position: absolute;
+}
+
 #circle1 {
   height: 7cm;
   width: 7cm;
@@ -6,79 +19,86 @@
   position: fixed;
   top: -01cm;
   left: -01cm;
-  display: inline-block
+  display: inline-block;
+  z-index: 1;
+  opacity: 0.8;
 }
 
 #circle2 {
-    height: 7cm;
-    width: 7cm;
-    border-radius: 50%;
-    background-color: #2da5fc;
-    position: fixed;
-    bottom: -01cm;
-    right: -01cm;
-    display: inline-block
-  }
+  height: 7cm;
+  width: 7cm;
+  border-radius: 50%;
+  background-color: #2da5fc;
+  position: fixed;
+  bottom: -01cm;
+  right: -01cm;
+  display: inline-block;
+  z-index: 1;
+  opacity: 0.8;
+}
 
-  #box {
-    background-color: aqua;
-    margin: 2cm;
-    height: 12cm;
-    width: 27.5cm;
-  }
+#box {
+  background-color: aqua;
+  height: 75vh;
+  width: 75vw;
+  position: relative;
+  opacity: 0.8;
+}
 
-  .dot {
-    background-color: #2da5fc;
-    height: 15px;
-    width : 15px;
-    border-radius: 50%;
-    display : inline-block;
-    margin: 5px;
-  }
+.dot {
+  background-color: #2da5fc;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 5px;
+}
 
-  #pattern1 {
-    position: absolute;
-    top:2cm;
-    right:13px;
-    height: 6.5cm;
-    width: 6cm;
-    padding: 12px;
-  }
+#pattern1 {
+  position: absolute;
+  top: 5%;
+  right: 3%;
+}
 
-  #pattern2 {
-    position: absolute;
-    bottom:1px;
-    left: 2cm;
-    height: 6.5cm;
-    width: 6cm;
-    padding: 12px;
-  }
+#pattern2 {
+  position: absolute;
+  bottom: 5%;
+  left: 3%;
+}
 
-  #login_form {
-    align-content: center;
-    top: 3cm;
-    background-color: aqua;
-    left :11cm;
-    position: fixed;
-    text-align: center;
-    height : 8cm;
-  }
+#login_form {
+  text-align: center;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
 
-  h4 {
-    width:8cm;
-  }
+.signup-input {
+  padding: 0.6rem;
+  border: 0;
+  outline: 0;
+  background: rgb(230, 230, 230);
+  border-radius: 0.25rem;
+  cursor: text;
+  width: 300px;
+  font-weight: 600;
+}
 
-  input {
-    margin: 5px;
-  }
+.btn {
+  padding: 0.6rem;
+  border: 0;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  width: 100px;
+}
 
-  button {
-    width : 4.5cm;
-    margin: 5px;
-    border: 0;
-  }
-
-  #login_but {
-    background-color: #2da5fc;
-    margin-top : 1cm;
-  }
+.login-btn {
+  background-color: #2da5fc;
+}

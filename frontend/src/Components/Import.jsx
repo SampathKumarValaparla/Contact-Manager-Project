@@ -3,11 +3,11 @@ import { useDropzone } from "react-dropzone";
 import { useEffect, useState } from "react";
 import papa from "papaparse";
 
-export default function Import() {
+export default function Import({ setShowImport, setImportSuccess }) {
   const [file, setFile] = useState(null);
   const [data, setData] = useState([]);
   const [message, setMessage] = useState("");
- 
+
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => {
       setMessage("");
@@ -15,10 +15,13 @@ export default function Import() {
         setFile(acceptedFiles[0]);
         papa.parse(acceptedFiles[0], {
           header: true,
-          complete: (res) => setData(res.data)
+          complete: (res) => setData(res.data),
         });
-      }
-      else {
+        //fetch.then(()=>{
+        // setShowImport(false);
+        // setImportSuccess(true);
+        // })
+      } else {
         setMessage("Please add a CSV file");
         setFile(null);
       }
@@ -27,7 +30,7 @@ export default function Import() {
   });
 
   useEffect(() => {
-    console.log(data)
+    console.log(data);
   }, [data]);
 
   return (
@@ -48,7 +51,12 @@ export default function Import() {
           </div>
         </div>
 
-        <button className="popup-btn" onClick={() => {}}>
+        <button
+          className="popup-btn"
+          onClick={() => {
+            setShowImport(false);
+          }}
+        >
           Cancel
         </button>
       </span>

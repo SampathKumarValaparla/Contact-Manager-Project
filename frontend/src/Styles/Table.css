@@ -1,0 +1,49 @@
+.table-container {
+  width: 98vw;
+  margin: auto;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  text-align: left;
+  padding: 12px;
+  background-color: #c6eff9;
+  font-weight: bold;
+}
+
+.table td {
+  text-align: left;
+  padding: 12px;
+}
+
+.TableData {
+  text-align: left;
+  padding: 12px;
+  background-color: #c6eff9;
+  font-weight: bold;
+}
+#delete {
+  height: 7.5px;
+  width: 1.25px;
+  left: 12.5px;
+  top: 7.5px;
+  border-radius: 0px;
+}
+
+tbody tr:nth-child(even) td {
+  background: #b2dfff4f;
+}
+
+.table-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.2rem;
+}
