@@ -1,6 +1,7 @@
 import { FaUserAlt } from "react-icons/fa";
 import "../Styles/Header.css";
 import { dataContext } from "./Contact";
+import { useContext } from "react"; 
 
 const Header = () => {
   const { data } = useContext(dataContext);
