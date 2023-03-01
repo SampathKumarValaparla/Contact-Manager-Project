@@ -6,7 +6,7 @@ function Signup() {
     <div id="login">
       <Design />
       <form id="login_form">
-        <h1>Logo</h1>
+        <h1 className="login-heading">Logo</h1>
         <h4>Create New Account</h4>
         <input className="signup-input" placeholder="Username" />
         <input className="signup-input" placeholder="Mail Id" />

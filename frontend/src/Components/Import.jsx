@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import papa from "papaparse";
 import load from "../Assets/load.gif";
 
-export default function Import({ setShowImport, setImportSuccess }) {
+export default function Import({ setShowImport, setImportSuccess, getData }) {
   const [file, setFile] = useState(null);
   const [data, setData] = useState([]);
   const [message, setMessage] = useState("");
@@ -46,6 +46,7 @@ export default function Import({ setShowImport, setImportSuccess }) {
           setLoading(false);
           setData([]);
           setImportSuccess(true);
+          getData();
         });
     }
   }, [data]);

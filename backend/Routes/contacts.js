@@ -10,14 +10,15 @@ app.use(fileupload());
 app.use(express.json());
 
 app.get('/', async(req,res) => {
-  const data = await contacts.find({user:req.user._id})
+  // const data = await contacts.find({user:req.user._id});
+  const data = await contacts.find();
   res.status(200).json(data);
 })
 
 app.post("/addcontact", async (req, res) => {
   let data = JSON.parse(req.body.data);
   await data.forEach(async (e) => {
-    if (e.name) {
+    if (e.name && e.phone) {
       await contacts.create({
         //   user: req.user.id,
         name: e.name,
@@ -25,7 +26,7 @@ app.post("/addcontact", async (req, res) => {
         company: e.company || "-",
         email: e.email || "-",
         industry: e.industry || "-",
-        phone: e.phone || "-",
+        phone: e.phone,
         country: e.country || "-",
       });
     }
@@ -34,12 +35,15 @@ app.post("/addcontact", async (req, res) => {
 });
 
 app.post("/deletcontact", async (req, res) => {
-  const { datas } = req.body;
-  const data = JSON.parse(datas);
+  const data = JSON.parse(req.body.data);
   await data.forEach(async (e) => {
     await contacts.deleteOne({ _id: e });
   });
   return res.status(200).json({ status: "success" });
 });
 
+app.post("/deleteonecontact", async (req, res) => {
+  await contacts.deleteOne({ _id: req.body.data });
+  return res.status(200).json({ status: "success" });
+});
 module.exports = app;

@@ -1,30 +1,69 @@
 import "../Styles/Table.css";
 import { MdDelete, MdEdit } from "react-icons/md";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import DelExp from "./DelExp";
+import Delete from "./Delete";
+import Deletesuccess from "./Deletesuccess";
+import { dataContext } from "./Contact";
 
 function Table() {
+
+  const { data, setData } = useContext(dataContext);
+
   const [checked, setChecked] = useState(false);
   const [deleteData, setDeleteData] = useState([]);
-  const [data, setData] = useState([]);
+  const [showDelete, setShowDelete] = useState(false);
+  const [deleteone, setDeleteone] = useState("");
+  const [deleteSuccess, setDeleteSuccess] = useState(false);
 
   const getData = () => {
     const token = sessionStorage.getItem("token");
-    fetch("http://localhost:8080/contact/",{
+    fetch("http://localhost:8080/contact/", {
       method: "GET",
       headers: { Authorization: token },
-    }).then(res => res.json()).then(data=>{
-      setData(data.data)
     })
-  }
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+      });
+  };
 
   useEffect(() => {
-    getData()
-  },[])
+    getData();
+  }, []);
+
+  useEffect(() => {
+    if (deleteone) {
+      setShowDelete(true);
+    }
+  }, [deleteone]);
 
   return (
     <>
-      <DelExp deleteData={deleteData} setDeleteData={setDeleteData} />
+      {showDelete ? (
+        <Delete
+          setShowDelete={setShowDelete}
+          setDeleteSuccess={setDeleteSuccess}
+          deleteone={deleteone}
+          setDeleteone={setDeleteone}
+          getData={getData}
+        />
+      ) : null}
+
+      {deleteSuccess ? (
+        <Deletesuccess
+          setDeleteSuccess={setDeleteSuccess}
+          setDeleteone={setDeleteone}
+          deleteone={deleteone}
+        />
+      ) : null}
+
+      <DelExp
+        deleteData={deleteData}
+        setDeleteData={setDeleteData}
+        getData={getData}
+      />
+
       <div className="table-container">
         <table className="table">
           <thead>
@@ -59,7 +98,7 @@ function Table() {
           </thead>
 
           <tbody>
-            {data.map((data) => (
+            {data?.map((data) => (
               <tr key={data._id}>
                 <td>
                   <input
@@ -70,24 +109,27 @@ function Table() {
                         setDeleteData([...deleteData, data._id]);
                       } else {
                         let deletevalues = deleteData.filter(
-                          (e) => e != data._id
+                          (e) => e !== data._id
                         );
                         setDeleteData(deletevalues);
                       }
                     }}
                   />
                 </td>
-                <td>{data.Name}</td>
-                <td>{data.Designation}</td>
-                <td>{data.Company}</td>
-                <td>{data.Email}</td>
-                <td>{data.Industry}</td>
-                <td>{data.Phone}</td>
-                <td>{data.Country}</td>
+                <td>{data.name}</td>
+                <td>{data.designation}</td>
+                <td>{data.company}</td>
+                <td>{data.email}</td>
+                <td>{data.industry}</td>
+                <td>{data.phone}</td>
+                <td>{data.country}</td>
                 <td>
                   <span className="table-btns">
                     <MdEdit style={{ color: "#0884FF" }} />
-                    <MdDelete style={{ color: "#F81D1D" }} />
+                    <MdDelete
+                      style={{ color: "#F81D1D" }}
+                      onClick={() => setDeleteone(data._id)}
+                    />
                   </span>
                 </td>
               </tr>

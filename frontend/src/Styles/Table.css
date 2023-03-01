@@ -8,32 +8,19 @@
 .table {
   width: 100%;
   border-collapse: collapse;
+  font-size: 0.9rem;
+  text-align: center;
 }
 
 .table th {
-  text-align: left;
-  padding: 12px;
+  padding: 0.7rem;
   background-color: #c6eff9;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .table td {
-  text-align: left;
-  padding: 12px;
-}
-
-.TableData {
-  text-align: left;
-  padding: 12px;
-  background-color: #c6eff9;
-  font-weight: bold;
-}
-#delete {
-  height: 7.5px;
-  width: 1.25px;
-  left: 12.5px;
-  top: 7.5px;
-  border-radius: 0px;
+  padding: 0.8rem;
+  font-weight: 600;
 }
 
 tbody tr:nth-child(even) td {

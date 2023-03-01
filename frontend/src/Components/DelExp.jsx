@@ -7,7 +7,7 @@ import Delete from "./Delete";
 import Importsuccess from "./Importsuccess";
 import Deletesuccess from "./Deletesuccess";
 
-function DelExp({ deleteData, setDeleteData }) {
+function DelExp({ deleteData, setDeleteData, getData }) {
   const [showDelete, setShowDelete] = useState(false);
   const [showImport, setShowImport] = useState(false);
   const [importSuccess, setImportSuccess] = useState(false);
@@ -19,6 +19,7 @@ function DelExp({ deleteData, setDeleteData }) {
         <Import
           setShowImport={setShowImport}
           setImportSuccess={setImportSuccess}
+          getData={getData}
         />
       ) : null}
       {showDelete ? (
@@ -26,6 +27,8 @@ function DelExp({ deleteData, setDeleteData }) {
           setShowDelete={setShowDelete}
           setDeleteSuccess={setDeleteSuccess}
           deleteData={deleteData}
+          setDeleteData={setDeleteData}
+          getData={getData}
         />
       ) : null}
 
@@ -36,15 +39,13 @@ function DelExp({ deleteData, setDeleteData }) {
         <Deletesuccess
           setDeleteSuccess={setDeleteSuccess}
           setDeleteData={setDeleteData}
+          deleteData={deleteData}
         />
       ) : null}
 
       <span className="filter">
         <select className="inputs">
           <option value="">Select Date</option>
-          <option value="2022-02-28">February 28, 2022</option>
-          <option value="2022-03-01">March 1, 2022</option>
-          <option value="2022-03-02">March 2, 2022</option>
         </select>
         <input
           className="inputs filter-input"

@@ -13,18 +13,18 @@
 .contacts {
   width: 100vw;
   height: 100vh;
-overflow: hidden;
+  overflow: hidden;
 }
 
-.main{
-display: flex;
-justify-content: flex-start;
-height: 92vh;
+.main {
+  display: flex;
+  justify-content: flex-start;
+  height: 92vh;
 }
 
-.contacts-sidebar{
+.contacts-sidebar {
   padding: 3rem 0;
-  background: #CEF3FF;
+  background: #cef3ff;
   width: 4vw;
   display: flex;
   justify-content: space-between;
@@ -33,26 +33,31 @@ height: 92vh;
   gap: 2rem;
 }
 
-.contacts-body{
+.contacts-body {
   width: 96vw;
 }
 
-.side-btn{
-border: 0;
-background: none;
+.side-btn {
+  border: 0;
+  background: none;
   font-size: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0.5rem;
   border-radius: 0.25rem;
+  width: 100%;
 }
 
-.side-logout{
+.selected{
+  background: #63d8ff;
+}
+
+.side-logout {
   color: rgb(255, 36, 36);
 }
 
-.side1{
+.side1 {
   display: flex;
   justify-content: center;
   align-items: center;
