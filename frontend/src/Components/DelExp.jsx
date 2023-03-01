@@ -7,7 +7,7 @@ import Delete from "./Delete";
 import Importsuccess from "./Importsuccess";
 import Deletesuccess from "./Deletesuccess";
 
-function DelExp() {
+function DelExp({ deleteData, setDeleteData }) {
   const [showDelete, setShowDelete] = useState(false);
   const [showImport, setShowImport] = useState(false);
   const [importSuccess, setImportSuccess] = useState(false);
@@ -25,6 +25,7 @@ function DelExp() {
         <Delete
           setShowDelete={setShowDelete}
           setDeleteSuccess={setDeleteSuccess}
+          deleteData={deleteData}
         />
       ) : null}
 
@@ -32,7 +33,10 @@ function DelExp() {
         <Importsuccess setImportSuccess={setImportSuccess} />
       ) : null}
       {deleteSuccess ? (
-        <Deletesuccess setDeleteSuccess={setDeleteSuccess} />
+        <Deletesuccess
+          setDeleteSuccess={setDeleteSuccess}
+          setDeleteData={setDeleteData}
+        />
       ) : null}
 
       <span className="filter">

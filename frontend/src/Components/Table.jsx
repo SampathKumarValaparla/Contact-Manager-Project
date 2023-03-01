@@ -1,87 +1,87 @@
 import "../Styles/Table.css";
 import { MdDelete, MdEdit } from "react-icons/md";
+import { useState } from "react";
+import DelExp from "./DelExp";
 
 function Table() {
-  const data = [
-    {
-      data: 1,
-      Name: "Sampath",
-      Designation: "Software Developer",
-      Company: "10X",
-      Email: "Sampath@gmail.com",
-      Industry: "Software",
-      Phone: 12345,
-      Country: "INDIA",
-    },
-    {
-      data: 2,
-      Name: "Sampath",
-      Designation: "Software Developer",
-      Company: "CTS",
-      Email: "SAm@gmail.com",
-      Industry: "Software",
-      Phone: 54321,
-      Country: "US",
-    },
-    {
-      data: 3,
-      Name: "Sampath",
-      Designation: "Software Developer",
-      Company: "TCS",
-      Email: "San@gmail.com",
-      Industry: "Hardware",
-      Phone: 56789,
-      Country: "USSR",
-    },
-  ];
+  const [checked, setChecked] = useState(false);
+  const [deleteData, setDeleteData] = useState([]);
+  const [data, setData] = useState([]);
 
   return (
-    <div className="table-container">
-      <table className="table">
-        <div>
-          <image src="https://img.icons8.com/nolan/1x/edit.png" />
-        </div>
-
-        <thead>
-          <tr>
-            <th>
-              <input type="checkbox" />
-            </th>
-            <th>Name</th>
-            <th>Designation</th>
-            <th>Company</th>
-            <th>Email</th>
-            <th>Industry</th>
-            <th>Phone</th>
-            <th>Country</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {data.map((data) => (
-            <tr key={data.id}>
-              <td>
-                <input type="checkbox" />
-              </td>
-              <td>{data.Name}</td>
-              <td>{data.Designation}</td>
-              <td>{data.Company}</td>
-              <td>{data.Email}</td>
-              <td>{data.Industry}</td>
-              <td>{data.Phone}</td>
-              <td>{data.Country}</td>
-              <td>
-                <span className="table-btns">
-                  <MdEdit style={{ color: "#0884FF" }} />
-                  <MdDelete style={{ color: "#F81D1D" }} />
-                </span>
-              </td>
+    <>
+      <DelExp deleteData={deleteData} setDeleteData={setDeleteData} />
+      <div className="table-container">
+        <table className="table">
+          <thead>
+            <tr>
+              <th>
+                <input
+                  type="checkbox"
+                  onClick={(e) => {
+                    if (e.target.checked) {
+                      setChecked(true);
+                      let arr = [];
+                      data.forEach((e) => {
+                        arr.push(e._id);
+                      });
+                      setDeleteData(arr);
+                    } else {
+                      setChecked(false);
+                      setDeleteData([]);
+                    }
+                  }}
+                />
+              </th>
+              <th>Name</th>
+              <th>Designation</th>
+              <th>Company</th>
+              <th>Email</th>
+              <th>Industry</th>
+              <th>Phone</th>
+              <th>Country</th>
+              <th>Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+
+          <tbody>
+            {data.map((data) => (
+              <tr key={data._id}>
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={checked ? true : undefined}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setDeleteData([...deleteData, data._id]);
+                      } else {
+                        let deletevalues = deleteData.filter(
+                          (e) => e != data._id
+                        );
+                        setDeleteData(deletevalues);
+                      }
+                    }}
+                  />
+                </td>
+                <td>{data.Name}</td>
+                <td>{data.Designation}</td>
+                <td>{data.Company}</td>
+                <td>{data.Email}</td>
+                <td>{data.Industry}</td>
+                <td>{data.Phone}</td>
+                <td>{data.Country}</td>
+                <td>
+                  <span className="table-btns">
+                    <MdEdit style={{ color: "#0884FF" }} />
+                    <MdDelete style={{ color: "#F81D1D" }} />
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 }
 

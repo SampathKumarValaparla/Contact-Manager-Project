@@ -9,6 +9,32 @@ app.use(cors());
 app.use(fileupload());
 app.use(express.json());
 
-app.get("/", (req, res) => {});
+app.post("/addcontact", async (req, res) => {
+  let data = JSON.parse(req.body.data);
+  await data.forEach(async (e) => {
+    if (e.name) {
+      await contacts.create({
+        //   user: req.user.id,
+        name: e.name,
+        designation: e.designation || "-",
+        company: e.company || "-",
+        email: e.email || "-",
+        industry: e.industry || "-",
+        phone: e.phone || "-",
+        country: e.country || "-",
+      });
+    }
+  });
+  return res.status(200).json({ status: "success" });
+});
+
+app.post("/deletcontact", async (req, res) => {
+  const { datas } = req.body;
+  const data = JSON.parse(datas);
+  await data.forEach(async (e) => {
+    await contacts.deleteOne({ _id: e });
+  });
+  return res.status(200).json({ status: "success" });
+});
 
 module.exports = app;

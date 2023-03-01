@@ -13,4 +13,49 @@
 .contacts {
   width: 100vw;
   height: 100vh;
+overflow: hidden;
+}
+
+.main{
+display: flex;
+justify-content: flex-start;
+height: 92vh;
+}
+
+.contacts-sidebar{
+  padding: 3rem 0;
+  background: #CEF3FF;
+  width: 4vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contacts-body{
+  width: 96vw;
+}
+
+.side-btn{
+border: 0;
+background: none;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.side-logout{
+  color: rgb(255, 36, 36);
+}
+
+.side1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
 }

@@ -14,16 +14,16 @@ const Header = () => {
         />
         {/* <button className="header-btn">Search</button> */}
       </div>
-      <div className="header-side">
+      {/* <div className="header-side"> */}
         <div className="sidebar">
           <FaUserAlt size={15} />
           <span className="header-name">username</span>
         </div>
-        <button className="logout-btn">
-          <BiLogOut />
-          Logout
-        </button>
-      </div>
+        {/* <button className="logout-btn"> */}
+          {/* <BiLogOut /> */}
+          {/* Logout */}
+        {/* </button> */}
+      {/* </div> */}
     </div>
   );
 };
