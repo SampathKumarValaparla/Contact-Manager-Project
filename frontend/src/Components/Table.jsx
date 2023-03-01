@@ -1,12 +1,26 @@
 import "../Styles/Table.css";
 import { MdDelete, MdEdit } from "react-icons/md";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DelExp from "./DelExp";
 
 function Table() {
   const [checked, setChecked] = useState(false);
   const [deleteData, setDeleteData] = useState([]);
   const [data, setData] = useState([]);
+
+  const getData = () => {
+    const token = sessionStorage.getItem("token");
+    fetch("http://localhost:8080/contact/",{
+      method: "GET",
+      headers: { Authorization: token },
+    }).then(res => res.json()).then(data=>{
+      setData(data.data)
+    })
+  }
+
+  useEffect(() => {
+    getData()
+  },[])
 
   return (
     <>

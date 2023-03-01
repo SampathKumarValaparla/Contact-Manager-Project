@@ -9,6 +9,11 @@ app.use(cors());
 app.use(fileupload());
 app.use(express.json());
 
+app.get('/', async(req,res) => {
+  const data = await contacts.find({user:req.user._id})
+  res.status(200).json(data);
+})
+
 app.post("/addcontact", async (req, res) => {
   let data = JSON.parse(req.body.data);
   await data.forEach(async (e) => {
