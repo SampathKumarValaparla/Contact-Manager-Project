@@ -41,7 +41,7 @@
   background-color: aqua;
   height: 75vh;
   width: 75vw;
-  position: relative;
+  position: absolute;
   opacity: 0.8;
 }
 
@@ -101,4 +101,10 @@
 
 .login-btn {
   background-color: #2da5fc;
+}
+
+.design{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

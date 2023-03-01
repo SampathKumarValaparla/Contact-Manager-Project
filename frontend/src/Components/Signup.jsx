@@ -1,5 +1,4 @@
 import React from "react";
-import "../Styles/login.css";
 import Design from "./Design";
 
 function Signup() {
