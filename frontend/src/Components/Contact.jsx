@@ -1,7 +1,7 @@
 import Header from "./Header";
 import Table from "./Table";
 import { MdDashboard, MdContacts, MdLogout } from "react-icons/md";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import Dashboard from "./Dashboard";
 import { useNavigate } from "react-router-dom";
 import Design from "./Design";
@@ -12,10 +12,23 @@ export default function Contact() {
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
+  const [user, setUser] = useState({});
+  const [alldata, setAlldata] = useState([]);
 
-  const value = { data, setData };
+  const value = { data, setData, alldata, setAlldata, user };
 
   const [dash, setDash] = useState(false);
+
+  // useEffect(() => {
+  //   fetch("http://localhost:8080/contact/finduser", {
+  //     method: "GET",
+  //     headers: { Authorization: token },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setUser(data.data);
+  //     });
+  // },[]);
 
   return (
     <dataContext.Provider value={value}>

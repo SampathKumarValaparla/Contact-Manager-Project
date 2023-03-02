@@ -8,7 +8,7 @@ import { dataContext } from "./Contact";
 
 function Table() {
 
-  const { data, setData } = useContext(dataContext);
+  const { data, setData, setAlldata } = useContext(dataContext);
 
   const [checked, setChecked] = useState(false);
   const [deleteData, setDeleteData] = useState([]);
@@ -24,7 +24,8 @@ function Table() {
     })
       .then((res) => res.json())
       .then((data) => {
-        setData(data);
+        setData(data.data);
+        setAlldata(data.alldata)
       });
   };
 

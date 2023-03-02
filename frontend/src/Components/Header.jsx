@@ -4,7 +4,7 @@ import { dataContext } from "./Contact";
 import { useContext } from "react"; 
 
 const Header = () => {
-  const { data } = useContext(dataContext);
+  const { alldata,user } = useContext(dataContext);
 
   return (
     <div className="header-container">

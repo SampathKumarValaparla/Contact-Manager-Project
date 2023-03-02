@@ -9,11 +9,26 @@ app.use(cors());
 app.use(fileupload());
 app.use(express.json());
 
-app.get('/', async(req,res) => {
-  // const data = await contacts.find({user:req.user._id});
-  const data = await contacts.find();
-  res.status(200).json(data);
-})
+app.get("/", async (req, res) => {
+  // const alldata = await contacts.find({user:req.user._id});
+  // const data = await contacts
+  //   .find({ user: req.user._id })
+  //   .sort({ name: 1 })
+  //   .skip((page - 1) * total)
+  //   .limit(total);
+  res.status(200).json({
+    alldata: alldata,
+    data: data
+  });
+});
+
+app.get("/finduser", async (req, res) => {
+  res.status(200).json({
+    id: req.user._id,
+    name: req.user.name,
+    email: req.user.email,
+  });
+});
 
 app.post("/addcontact", async (req, res) => {
   let data = JSON.parse(req.body.data);
