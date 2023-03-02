@@ -5,6 +5,7 @@ import DelExp from "./DelExp";
 import Delete from "./Delete";
 import Deletesuccess from "./Deletesuccess";
 import { dataContext } from "./Contact";
+//import Header from "./Header";
 
 function Table() {
 
@@ -29,7 +30,7 @@ function Table() {
   };
 
   useEffect(() => {
-    getData();
+    getData([]);
   }, []);
 
   useEffect(() => {
