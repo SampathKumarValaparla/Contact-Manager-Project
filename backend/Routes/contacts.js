@@ -10,15 +10,24 @@ app.use(fileupload());
 app.use(express.json());
 
 app.get("/", async (req, res) => {
-  // const alldata = await contacts.find({user:req.user._id});
+  const page = req.query.page;
+  const total = req.query.total;
+  // const alldata = await contacts.find({user:req.user._id}).sort({ name: 1 });
   // const data = await contacts
   //   .find({ user: req.user._id })
   //   .sort({ name: 1 })
   //   .skip((page - 1) * total)
   //   .limit(total);
+  const data = await contacts
+    .find()
+    .sort({ name: 1 })
+    .skip((page - 1) * total)
+    .limit(total);
+  const alldata = await contacts.find().sort({ name: 1 });
+
   res.status(200).json({
     alldata: alldata,
-    data: data
+    data: data,
   });
 });
 

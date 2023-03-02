@@ -9,7 +9,6 @@ export default function Delete({
   deleteone,
   setDeleteone,
   setDeleteData,
-  getData,
 }) {
   const [loading, setLoading] = useState(false);
 
@@ -25,12 +24,11 @@ export default function Delete({
         headers: { Authorization: token },
       })
         .then((res) => res.json())
-        .then(() => {
+        .then(async () => {
           setShowDelete(false);
           setDeleteSuccess(true);
           setDeleteData([]);
           setLoading(false);
-          getData();
         });
     }
     if (deleteone) {
@@ -49,7 +47,6 @@ export default function Delete({
           setDeleteSuccess(true);
           setDeleteone("");
           setLoading(false);
-          getData();
         });
     }
   }

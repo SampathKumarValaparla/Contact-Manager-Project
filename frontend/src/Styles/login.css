@@ -102,8 +102,16 @@
   background:#89e1ff;
 }
 
+.btn:hover{
+  background:#9fe7ff;
+}
+
 .login-btn {
   background-color: #2da5fc;
+}
+
+.login-btn:hover{
+  background-color: #58baff;
 }
 
 .design{

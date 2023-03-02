@@ -1,6 +1,6 @@
 import { BsFillCheckCircleFill } from "react-icons/bs";
 
-export default function Importsuccess({ setImportSuccess }) {
+export default function Importsuccess({ setImportSuccess,getData }) {
   return (
     <div className="popup-main">
       <span className="popup-body">
@@ -10,6 +10,7 @@ export default function Importsuccess({ setImportSuccess }) {
         <button
           className="popup-btn"
           onClick={() => {
+            getData();
             setImportSuccess(false);
           }}
         >

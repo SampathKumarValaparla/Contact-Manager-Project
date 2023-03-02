@@ -46,7 +46,6 @@ export default function Import({ setShowImport, setImportSuccess, getData }) {
           setLoading(false);
           setData([]);
           setImportSuccess(true);
-          getData();
         });
     }
   }, [data]);

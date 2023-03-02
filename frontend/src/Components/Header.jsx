@@ -1,36 +1,24 @@
 import { FaUserAlt } from "react-icons/fa";
 import "../Styles/Header.css";
 import { dataContext } from "./Contact";
-import { useContext, useEffect, useState } from "react"; 
-import axios from 'axios';
+import { useContext, useState } from "react";
 
 const Header = () => {
-  const [searchQuery, setSearchQuery] = useState("")
   const [result, setResult] = useState([]);
-  const { alldata,user } = useContext(dataContext);
+  const { alldata, user, setSearchdata } = useContext(dataContext);
 
-const HandleInputChange = (e) => {
-  setSearchQuery(e.target.value)
-}
-useEffect(() => {
-  const search = async () => {
-    try{
-      if(!searchQuery.trim()){
-        setResult([])
-        return
-      }
-      const res = await axios.get("https://some-random-api.ml/animal/bird",{params: {key:searchQuery} , limit:5})
-      setResult(res.data.data)
-      console.log(res);
-  
-    }catch(error){
-      console.log(error);
+  const HandleInputChange = (e) => {
+    if (e.target.value) {
+      const regex = new RegExp(`^${e.target.value.toLowerCase()}`);
+      let arr = alldata.filter((data) => {
+        return regex.test(data.name.toLowerCase());
+      });
+      setResult(arr);
+    } else {
+      setResult([]);
+      setSearchdata([]);
     }
-  }
-  search()
-},[searchQuery])
-
-
+  };
 
   return (
     <div className="header-container">
@@ -39,24 +27,31 @@ useEffect(() => {
         <input
           type="text"
           className="header-search"
-          placeholder="Search By Email..."
+          placeholder="Search By Name..."
           onChange={HandleInputChange}
-          value={searchQuery}
         />
+        <div className="search-result">
+          {result.map((data, i) => {
+            return (
+              <span
+                key={i}
+                className="search-data"
+                onClick={() => {
+                  setSearchdata([data]);
+                  setResult([]);
+                }}
+              >
+                {data.name} - {data.email}
+              </span>
+            );
+          })}
+        </div>
       </div>
       <div className="sidebar">
         <FaUserAlt size={15} />
+        {/* <span className="header-name">{user.name}</span> */}
         <span className="header-name">username</span>
       </div>
-      {result && result.length > 0 &&(
-        <div>
-          {result.map(image => {
-            <div>
-              <img src={image.imageUrl}/>
-            </div>
-          })}
-        </div>
-      )}
     </div>
   );
 };

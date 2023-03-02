@@ -14,8 +14,17 @@ export default function Contact() {
   const [data, setData] = useState([]);
   const [user, setUser] = useState({});
   const [alldata, setAlldata] = useState([]);
+  const [searchdata, setSearchdata] = useState([]);
 
-  const value = { data, setData, alldata, setAlldata, user };
+  const value = {
+    data,
+    setData,
+    alldata,
+    setAlldata,
+    user,
+    searchdata,
+    setSearchdata,
+  };
 
   const [dash, setDash] = useState(false);
 
@@ -70,16 +79,16 @@ export default function Contact() {
           </div>
         </div>
       ) : (
-        <div className="nopage-main">
-          <Design />
-          <div className="nopage">
-            <span>Session expired</span>
-            <span className="nopage-desc">Please login again</span>
-            <button className="btn session-btn" onClick={() => navigate("/")}>
-              Go to login
-            </button>
+          <div className="nopage-main">
+            <Design />
+            <div className="nopage">
+              <span>Session expired</span>
+              <span className="nopage-desc">Please login again</span>
+              <button className="btn session-btn" onClick={() => navigate("/")}>
+                Go to login
+              </button>
+            </div>
           </div>
-        </div>
       )}
     </dataContext.Provider>
   );

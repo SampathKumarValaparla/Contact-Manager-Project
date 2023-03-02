@@ -1,12 +1,6 @@
 import { BsFillCheckCircleFill } from "react-icons/bs";
 
-export default function Deletesuccess({
-  setDeleteSuccess,
-  setDeleteData,
-  deleteData,
-  deleteone,
-  setDeleteone,
-}) {
+export default function Deletesuccess({ getData, setDeleteSuccess }) {
   return (
     <div className="popup-main">
       <span className="popup-body">
@@ -15,6 +9,7 @@ export default function Deletesuccess({
         <button
           className="popup-btn"
           onClick={() => {
+            getData();
             setDeleteSuccess(false);
           }}
         >

@@ -34,3 +34,48 @@ tbody tr:nth-child(even) td {
   gap: 1rem;
   font-size: 1.2rem;
 }
+
+
+.pagination{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  position: absolute;
+  bottom: 0;
+}
+
+.page-btn{
+  font-weight: 700;
+  font-size: 1.5rem;
+  background: #63d8ff;
+  border-radius: 0.25rem;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  cursor:pointer;
+  transition: ease-in-out 200ms;
+}
+
+.page{
+  width: 1.5rem;
+  text-align: center;
+}
+
+.page-btn:hover{
+background: #89e2ff;
+}
+
+.page-hidden{
+  display: none;
+}
+
+.page-div{
+position: absolute;
+width: 100%;
+display: flex;
+justify-content: center;
+bottom: 3rem;
+}

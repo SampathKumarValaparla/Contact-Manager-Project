@@ -19,7 +19,6 @@ function DelExp({ deleteData, setDeleteData, getData }) {
         <Import
           setShowImport={setShowImport}
           setImportSuccess={setImportSuccess}
-          getData={getData}
         />
       ) : null}
       {showDelete ? (
@@ -28,19 +27,14 @@ function DelExp({ deleteData, setDeleteData, getData }) {
           setDeleteSuccess={setDeleteSuccess}
           deleteData={deleteData}
           setDeleteData={setDeleteData}
-          getData={getData}
         />
       ) : null}
 
       {importSuccess ? (
-        <Importsuccess setImportSuccess={setImportSuccess} />
+        <Importsuccess setImportSuccess={setImportSuccess} getData={getData} />
       ) : null}
       {deleteSuccess ? (
-        <Deletesuccess
-          setDeleteSuccess={setDeleteSuccess}
-          setDeleteData={setDeleteData}
-          deleteData={deleteData}
-        />
+        <Deletesuccess setDeleteSuccess={setDeleteSuccess} getData={getData} />
       ) : null}
 
       <span className="filter">

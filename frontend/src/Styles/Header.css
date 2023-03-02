@@ -18,7 +18,8 @@
   align-items: center;
   justify-content: center;
   border-radius: 0.25rem;
-  overflow: hidden;
+  /* overflow: hidden; */
+  position: relative;
 }
 
 .header-search {
@@ -74,4 +75,28 @@
   color: white;
   font-weight: 700;
   cursor: pointer;
+}
+
+.search-result {
+  position: absolute;
+  top: 110%;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  background: #63d8ff;
+  border-radius: 0.25rem;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.search-data{
+  padding: 0.8rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: ease-in-out 200ms;
+}
+
+.search-data:hover{
+background: #89e2ff;
 }
