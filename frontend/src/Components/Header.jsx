@@ -49,8 +49,7 @@ const Header = () => {
       </div>
       <div className="sidebar">
         <FaUserAlt size={15} />
-        {/* <span className="header-name">{user.name}</span> */}
-        <span className="header-name">username</span>
+        <span className="header-name">{user.username}</span>
       </div>
     </div>
   );

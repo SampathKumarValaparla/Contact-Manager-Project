@@ -21,7 +21,7 @@
   font-size: 0.9rem;
   font-weight: 600;
   outline: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 .filter-input {

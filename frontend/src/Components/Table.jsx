@@ -5,7 +5,7 @@ import DelExp from "./DelExp";
 import Delete from "./Delete";
 import Deletesuccess from "./Deletesuccess";
 import { dataContext } from "./Contact";
-//import Header from "./Header";
+import load from "../Assets/load.gif";
 
 function Table() {
   const { data, setData, alldata, setAlldata, searchdata } =
@@ -17,18 +17,21 @@ function Table() {
   const [deleteone, setDeleteone] = useState("");
   const [deleteSuccess, setDeleteSuccess] = useState(false);
   const [page, setPage] = useState(1);
+  const [tableload, setTableload] = useState(false);
 
   function getData() {
-    // const token = sessionStorage.getItem("token");
+    setTableload(true);
+    const token = sessionStorage.getItem("token");
     fetch(`http://localhost:8080/contact?page=${page}&total=8`, {
       method: "GET",
-      // headers: { Authorization: token },
+      headers: { Authorization: token },
     })
       .then((res) => res.json())
       .then((data) => {
         setData(data.data);
         setAlldata(data.alldata);
         setChecked(false);
+        setTableload(false);
       });
   }
 
@@ -46,7 +49,11 @@ function Table() {
     if (!checked) {
       setDeleteData([]);
     }
-  },[checked])
+  }, [checked]);
+
+  useEffect(() => {
+    setChecked(false);
+  }, [data, searchdata]);
 
   return (
     <>
@@ -57,19 +64,17 @@ function Table() {
           deleteone={deleteone}
           setDeleteone={setDeleteone}
           getData={getData}
+          showDelete={showDelete}
         />
       ) : null}
-
       {deleteSuccess ? (
         <Deletesuccess setDeleteSuccess={setDeleteSuccess} getData={getData} />
       ) : null}
-
       <DelExp
         deleteData={deleteData}
         setDeleteData={setDeleteData}
         getData={getData}
       />
-
       <div className="table-container">
         <table className="table">
           <thead>
@@ -103,51 +108,56 @@ function Table() {
               <th>Action</th>
             </tr>
           </thead>
-
-          <tbody>
-            {(searchdata.length != 0 ? searchdata : data)?.map((data) => {
-              return (
-                <tr key={data._id}>
-                  <td>
-                    <input
-                      type="checkbox"
-                      checked={checked ? true : undefined}
-                      onChange={(e) => {
-                        if (e.target.checked) {
-                          setDeleteData([...deleteData, data._id]);
-                        } else {
-                          let deletevalues = deleteData.filter(
-                            (e) => e !== data._id
-                          );
-                          setDeleteData(deletevalues);
-                        }
-                      }}
-                    />
-                  </td>
-                  <td>{data.name}</td>
-                  <td>{data.designation}</td>
-                  <td>{data.company}</td>
-                  <td>{data.email}</td>
-                  <td>{data.industry}</td>
-                  <td>{data.phone}</td>
-                  <td>{data.country}</td>
-                  <td>
-                    <span className="table-btns">
-                      <MdEdit style={{ color: "#0884FF" }} />
-                      <MdDelete
-                        style={{ color: "#F81D1D" }}
-                        onClick={() => setDeleteone(data._id)}
+          {tableload ? (
+            <div className="loading-table">
+              <img src={load} className="loading-table-size" />
+            </div>
+          ) : (
+            <tbody>
+              {(searchdata.length != 0 ? searchdata : data)?.map((data) => {
+                return (
+                  <tr key={data._id}>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={checked ? true : undefined}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setDeleteData([...deleteData, data._id]);
+                          } else {
+                            let deletevalues = deleteData.filter(
+                              (e) => e !== data._id
+                            );
+                            setDeleteData(deletevalues);
+                          }
+                        }}
                       />
-                    </span>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
+                    </td>
+                    <td>{data.name}</td>
+                    <td>{data.designation}</td>
+                    <td>{data.company}</td>
+                    <td>{data.email}</td>
+                    <td>{data.industry}</td>
+                    <td>{data.phone}</td>
+                    <td>{data.country}</td>
+                    <td>
+                      <span className="table-btns">
+                        <MdEdit style={{ color: "#0884FF" }} />
+                        <MdDelete
+                          style={{ color: "#F81D1D" }}
+                          onClick={() => setDeleteone(data._id)}
+                        />
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          )}
         </table>
       </div>
       <div className="page-div">
-        <div className={alldata.length == 0 ? "page-hidden" : "pagination"}>
+        <div className={alldata.length < 9 ? "page-hidden" : "pagination"}>
           <button
             className="page-btn"
             onClick={() => setPage(page - 1)}

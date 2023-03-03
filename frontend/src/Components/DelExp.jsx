@@ -19,6 +19,7 @@ function DelExp({ deleteData, setDeleteData, getData }) {
         <Import
           setShowImport={setShowImport}
           setImportSuccess={setImportSuccess}
+          showImport={showImport}
         />
       ) : null}
       {showDelete ? (
@@ -27,6 +28,7 @@ function DelExp({ deleteData, setDeleteData, getData }) {
           setDeleteSuccess={setDeleteSuccess}
           deleteData={deleteData}
           setDeleteData={setDeleteData}
+          showDelete={showDelete}
         />
       ) : null}
 

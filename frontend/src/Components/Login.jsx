@@ -1,87 +1,112 @@
-import React from "react";
-import "../Styles/login.css";
-import { Link , useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import "../Styles/Login.css";
+import { useNavigate } from "react-router-dom";
 import Design from "./Design";
-import { useState } from "react";
 
 function Login() {
-
   const navigate = useNavigate();
-  const [email , setemail] = useState("");
-  const [password , setpassword] = useState("");
-  const [message , setmessage] = useState("");
-  const [token , settoken] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
-    
-    formData.append("email",email);
-    formData.append("password",password);
 
-    formData.forEach((val,key) => {
-      console.log(val,key);
-    })
+    formData.append("email", email);
+    formData.append("password", password);
 
-    const res = await fetch('http://localhost:8080/user/login',
-    {
-      method : "POST",
-      body : formData
-    })
+    const res = await fetch("http://localhost:8080/user/login", {
+      method: "POST",
+      body: formData,
+    });
 
     const response = await res.json();
-    console.log(response);
-
-    if(response.token) {
-      settoken(response.token);
-      sessionStorage.setItem("token" , response.token )
+    setMessage(response.message);
+    if (response.token) {
+      sessionStorage.setItem("token", response.token);
+      setEmail("");
+      setPassword("");
     }
+  };
 
-    setmessage(response.message);
-    console.log(message);
-
-    setTimeout( () =>{
-      if(token){
-        console.log(token);
-        console.log(message);
-        setmessage("");
-        navigate("/contact");
-      }
-      else {
-        setmessage("");
-        setemail("");
-        setpassword("");
-      }
-    },3000)
-  }
-
+  useEffect(() => {
+    if (message) {
+      setTimeout(() => {
+        if (sessionStorage.getItem("token")) {
+          setMessage("");
+          navigate("/contact");
+        } else {
+          setMessage("");
+        }
+      }, 2000);
+    }
+  }, [message]);
 
   return (
-    <div id="login">
-      <Design />
-      <form id="login_form">
-        <h1>Logo</h1>
-        <h4>Enter your credentials to access your account</h4>
+    <>
+      {message ? (
+        <div className="popup-main">
+          <span className="popup-body">
+            <span className="popup-msg">
+              {message}
+            </span>
+            <button
+              className="popup-btn"
+              onClick={() => {
+                if (sessionStorage.getItem("token")) {
+                  setMessage("");
+                  navigate("/contact");
+                } else {
+                  setMessage("");
+                }
+              }}
+            >
+              OK
+            </button>
+          </span>
+        </div>
+      ) : null}
 
-        <input className="signup-input" placeholder="User Id" type='email' onChange={ (e) => {
-          setemail(e.target.value)
-        }} />
+      <div id="login">
+        <Design />
+        <form id="login_form">
+          <h1 className="login-heading">Logo</h1>
+          <h4>Enter your credentials to access your account</h4>
 
-        <input className="signup-input" placeholder="Password" type='password' onChange={ (e) => {
-          setpassword(e.target.value)
-        }}/>
+          <input
+            className="signup-input"
+            placeholder="Email Id"
+            type="email"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
 
-          <button className="btn login-btn" id="login_but" onClick={handleLogin}>
+          <input
+            className="signup-input"
+            placeholder="Password"
+            type="password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+
+          <button
+            className="btn login-btn"
+            id="login_but"
+            onClick={handleLogin}
+          >
             Login
           </button>
-        <Link to="/signup">
-          <button className="btn signup-btn">Signup</button>
-        </Link>
-      </form>
-    </div>
+          <button className="btn" onClick={() => navigate("/signup")}>
+            Signup
+          </button>
+        </form>
+      </div>
+    </>
   );
 }
 
 export default Login;
-

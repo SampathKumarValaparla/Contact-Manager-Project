@@ -1,7 +1,7 @@
 import React from "react";
-import "../Styles/login.css";
+import "../Styles/Login.css";
 import Design from "./Design";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Signup() {
@@ -10,11 +10,15 @@ function Signup() {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [conf_password, setconf_password] = useState("");
-  const [message, setmessage] = useState("");
-  const [status, setstatus] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleSignup = async (e) => {
     e.preventDefault();
+
+    if (password.length < 6) {
+      setMessage("Password should be more than 5 charecters");
+      return;
+    }
 
     const formData = new FormData();
     formData.append("username", username);
@@ -23,7 +27,6 @@ function Signup() {
     formData.append("conf_password", conf_password);
 
     formData.forEach((val, key) => {
-      console.log(val, key);
     });
 
     const res = await fetch("http://localhost:8080/user/signup", {
@@ -32,74 +35,94 @@ function Signup() {
     });
 
     const response = await res.json();
-    console.log(response);
-    setmessage(response.message);
-    setstatus(response.status);
-    console.log(message);
-
-    setTimeout(() => {
-      if (status == "Success") {
-        setmessage("");
-        navigate("/");
-      } else {
-        setmessage("");
-        setemail("");
-        setusername("");
-        setpassword("");
-        setconf_password("");
-      }
-    }, 3000);
+    setMessage(response.message);
   };
 
+  useEffect(() => {
+    if (message) {
+      setTimeout(() => {
+        if (message == "User Successfully Registerd") {
+          setMessage("");
+          navigate("/");
+        } else {
+          setMessage("");
+        }
+      }, 2000);
+    }
+  }, [message]);
+
   return (
-    <div id="login">
-      <Design />
-      <form id="login_form">
-        <h1>Logo</h1>
-        <h4>Create New Account</h4>
-        
-        <input
-          className="signup-input"
-          placeholder="Username"
-          onChange={(e) => {
-            setusername(e.target.value);
-          }}
-        />
+    <>
+      {message ? (
+        <div className="popup-main">
+          <span className="popup-body">
+            <span className="popup-msg">
+              {message}
+            </span>
+            <button
+              className="popup-btn warn-btn-yes"
+              onClick={() => {
+               if (message == "User Successfully Registerd") {
+                 setMessage("");
+                 navigate("/");
+               } else {
+                 setMessage("");
+               }
+              }}
+            >
+              OK
+            </button>
+          </span>
+        </div>
+      ) : null}
+      <div id="login">
+        <Design />
+        <form id="login_form">
+          <h1 className="login-heading">Logo</h1>
+          <h4>Create New Account</h4>
 
-        <input
-          className="signup-input"
-          placeholder="Mail Id"
-          type="email"
-          onChange={(e) => {
-            setemail(e.target.value);
-          }}
-        />
+          <input
+            className="signup-input"
+            placeholder="Username"
+            onChange={(e) => {
+              setusername(e.target.value);
+            }}
+          />
 
-        <input
-          className="signup-input"
-          placeholder="Password"
-          type="password"
-          onChange={(e) => {
-            setpassword(e.target.value);
-          }}
-        />
+          <input
+            className="signup-input"
+            placeholder="Mail Id"
+            type="email"
+            onChange={(e) => {
+              setemail(e.target.value);
+            }}
+          />
 
-        <input
-          className="signup-input"
-          placeholder="Confirm Password"
-          type="password"
-          onChange={(e) => {
-            setconf_password(e.target.value);
-          }}
-        />
+          <input
+            className="signup-input"
+            placeholder="Password"
+            type="password"
+            onChange={(e) => {
+              setpassword(e.target.value);
+            }}
+          />
 
-        <button className="btn login-btn" onClick={handleSignup}>
-          Signup
-        </button>
-      </form>
-    </div>
+          <input
+            className="signup-input"
+            placeholder="Confirm Password"
+            type="password"
+            onChange={(e) => {
+              setconf_password(e.target.value);
+            }}
+          />
+
+          <button className="btn login-btn" onClick={handleSignup}>
+            Signup
+          </button>
+        </form>
+      </div>
+    </>
   );
 }
 
 export default Signup;
-

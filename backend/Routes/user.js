@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { body, validationResult } = require("express-validator");
 const User = require("../Models/user");
-const secret = "Contact-Manager";
+const secret = process.env.SECRET;
 
 const app = express();
 
@@ -23,11 +23,17 @@ app.post("/signup", body("email").isEmail(), async (req, res) => {
 
     if (!errors.isEmpty()) {
       return res.status(400).json({
-        errors: errors.array(),
+        message:"Invalid value of Email"
       });
     }
 
     const { username, email, password, conf_password } = req.body;
+
+    if (!username) {
+      return res.status(400).json({
+        message: "Invalid value of Username",
+      });
+    }
 
     const user = await User.findOne({ email });
 
@@ -89,7 +95,7 @@ app.post("/login", body("email").isEmail(), async (req, res) => {
     if (!user) {
       return res.status(400).json({
         status: "Failed",
-        message: "Unnown user/ User is not registered",
+        message: "User is not registered",
       });
     }
 
@@ -117,7 +123,7 @@ app.post("/login", body("email").isEmail(), async (req, res) => {
       } else {
         return res.status(400).json({
           status: "Failed",
-          message: "Invalid credentails",
+          message: "Wrong password",
         });
       }
     });

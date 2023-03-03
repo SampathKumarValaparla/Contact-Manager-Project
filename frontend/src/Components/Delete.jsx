@@ -1,6 +1,7 @@
 import { MdDelete } from "react-icons/md";
 import load from "../Assets/load.gif";
-import { useState } from "react";
+import {useContext } from "react";
+import { dataContext } from "./Contact";
 
 export default function Delete({
   setShowDelete,
@@ -10,7 +11,7 @@ export default function Delete({
   setDeleteone,
   setDeleteData,
 }) {
-  const [loading, setLoading] = useState(false);
+  const { loading, setLoading } = useContext(dataContext);
 
   function deleteContact() {
     if (deleteData) {

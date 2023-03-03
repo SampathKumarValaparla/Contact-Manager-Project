@@ -15,6 +15,7 @@ export default function Contact() {
   const [user, setUser] = useState({});
   const [alldata, setAlldata] = useState([]);
   const [searchdata, setSearchdata] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const value = {
     data,
@@ -24,24 +25,27 @@ export default function Contact() {
     user,
     searchdata,
     setSearchdata,
+    loading,
+    setLoading,
   };
 
   const [dash, setDash] = useState(false);
 
-  // useEffect(() => {
-  //   fetch("http://localhost:8080/contact/finduser", {
-  //     method: "GET",
-  //     headers: { Authorization: token },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setUser(data.data);
-  //     });
-  // },[]);
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+    fetch("http://localhost:8080/contact/finduser", {
+      method: "GET",
+      headers: { Authorization: token },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setUser(data);
+      });
+  },[]);
 
   return (
     <dataContext.Provider value={value}>
-      {!sessionStorage.getItem("token") ? (
+      {sessionStorage.getItem("token") ? (
         <div className="contacts">
           <Header />
           <div className="main">

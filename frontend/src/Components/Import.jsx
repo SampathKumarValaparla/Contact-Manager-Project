@@ -1,14 +1,16 @@
 import { AiFillFileAdd } from "react-icons/ai";
 import { useDropzone } from "react-dropzone";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import papa from "papaparse";
 import load from "../Assets/load.gif";
+import { dataContext } from "./Contact";
 
-export default function Import({ setShowImport, setImportSuccess, getData }) {
+export default function Import({ setShowImport, setImportSuccess }) {
   const [file, setFile] = useState(null);
   const [data, setData] = useState([]);
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false);
+
+  const { loading, setLoading } = useContext(dataContext);
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => {

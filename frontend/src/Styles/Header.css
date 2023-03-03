@@ -30,6 +30,7 @@
   font-weight: 600;
   cursor: text;
   outline: none;
+  border-radius: 0.25rem;
 }
 
 .header-btn {
