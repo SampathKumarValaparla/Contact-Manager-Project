@@ -13,8 +13,38 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/contact", (req, res, next) => {
-    next();
+
+  const token = req.headers.authorization;
+
+  if(token) {
+    jwt.verify(token, secret , function(err , decoded) {
+
+      if(err) {
+        console.log(err);
+
+        return res.status(409).json({
+          status : "Failed",
+          message : "Invalid Token"
+        });
+      }
+
+      req.user = decoded.data;
+      next();
+
+    });
+  }
+
+  else {
+    console.log("User not Authenticated");
+    res.status(403).json({
+      status : "Failed" ,
+      message : "User Not Authenticated"
+    });
+  }
+
 });
+
+
 app.use("/user", userRoute);
 app.use("/contact", contactRoute);
 
