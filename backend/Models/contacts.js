@@ -2,7 +2,7 @@ const db = require("mongoose");
 
 const contactSchema = new db.Schema(
   {
-    // user: { type: String, required: true },
+    user: { type: String, required: true },
     name: { type: String, required: true },
     designation: { type: String, required: true },
     company: { type: String, required: true },

@@ -33,7 +33,7 @@ app.post("/addcontact", async (req, res) => {
   await data.forEach(async (e) => {
     if (e.name && e.phone) {
       await contacts.create({
-        user: req.user.id,
+        user: req.user._id,
         name: e.name,
         designation: e.designation || "-",
         company: e.company || "-",
