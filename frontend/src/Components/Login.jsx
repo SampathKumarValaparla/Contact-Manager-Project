@@ -24,7 +24,7 @@ function Login() {
       console.log(val,key);
     })
 
-    const res = await fetch('http://localhost:8080/user/',
+    const res = await fetch('http://localhost:8080/user/login',
     {
       method : "POST",
       body : formData
