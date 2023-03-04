@@ -28,6 +28,8 @@ function Table() {
     })
       .then((res) => res.json())
       .then((data) => {
+        if (data.message == "Invalid Token")
+          sessionStorage.setItem("token", "");
         setData(data.data);
         setAlldata(data.alldata);
         setChecked(false);

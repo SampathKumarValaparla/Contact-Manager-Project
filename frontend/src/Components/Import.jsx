@@ -43,7 +43,9 @@ export default function Import({ setShowImport, setImportSuccess }) {
         headers: { Authorization: token },
       })
         .then((res) => res.json())
-        .then(() => {
+        .then((data) => {
+        if (data.message == "Invalid Token")
+          sessionStorage.setItem("token", "");
           setShowImport(false);
           setLoading(false);
           setData([]);

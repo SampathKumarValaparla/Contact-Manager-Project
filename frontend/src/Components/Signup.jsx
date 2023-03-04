@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../Assets/logo.png";
 import load from "../Assets/load.gif";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 function Signup() {
   const navigate = useNavigate();
@@ -15,8 +15,7 @@ function Signup() {
   const [conf_password, setconf_password] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [showpass, setShowpass] = useState(false);
-  const [showconf, setShowconf] = useState(false);
+  const [show, setShow] = useState(false);
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -118,25 +117,21 @@ function Signup() {
             <input
               className="signup-input"
               placeholder="Password"
-              type={showpass ? "text" : "password"}
+              type={show ? "text" : "password"}
               onChange={(e) => {
                 setpassword(e.target.value);
               }}
             />
-            {showpass ? (
-              <AiOutlineEyeInvisible
-                className="show-btn"
-                onClick={() => setShowpass(false)}
-              />
+            {show ? (
+              <AiFillEye className="show-btn" onClick={() => setShow(false)} />
             ) : (
-              <AiOutlineEye
+              <AiFillEyeInvisible
                 className="show-btn"
-                onClick={() => setShowpass(true)}
+                onClick={() => setShow(true)}
               />
             )}
           </span>
 
-          <span className="pass">
             <input
               className="signup-input"
               placeholder="Confirm Password"
@@ -145,18 +140,6 @@ function Signup() {
                 setconf_password(e.target.value);
               }}
             />
-            {showconf ? (
-              <AiOutlineEyeInvisible
-                className="show-btn"
-                onClick={() => setShowconf(false)}
-              />
-            ) : (
-              <AiOutlineEye
-                className="show-btn"
-                onClick={() => setShowconf(true)}
-              />
-            )}
-          </span>
 
           <button className="btn login-btn" onClick={handleSignup}>
             Signup

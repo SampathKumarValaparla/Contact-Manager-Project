@@ -42,6 +42,8 @@ export default function Contact() {
     })
       .then((res) => res.json())
       .then((data) => {
+        if (data.message == "Invalid Token")
+          sessionStorage.setItem("token", "");
         setUser(data);
       });
   },[]);

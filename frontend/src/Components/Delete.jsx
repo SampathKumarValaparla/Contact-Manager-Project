@@ -25,7 +25,9 @@ export default function Delete({
         headers: { Authorization: token },
       })
         .then((res) => res.json())
-        .then(async () => {
+        .then((data) => {
+        if (data.message == "Invalid Token")
+          sessionStorage.setItem("token", "");
           setShowDelete(false);
           setDeleteSuccess(true);
           setDeleteData([]);
@@ -43,7 +45,9 @@ export default function Delete({
         headers: { Authorization: token },
       })
         .then((res) => res.json())
-        .then(() => {
+        .then((data) => {
+        if (data.message == "Invalid Token")
+          sessionStorage.setItem("token", "");
           setShowDelete(false);
           setDeleteSuccess(true);
           setDeleteone("");

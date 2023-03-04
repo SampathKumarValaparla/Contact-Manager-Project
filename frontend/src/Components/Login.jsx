@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Design from "./Design";
 import logo from "../Assets/logo.png";
 import load from "../Assets/load.gif";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 function Login() {
   const navigate = useNavigate();
@@ -110,12 +110,9 @@ function Login() {
               }}
             />
             {show ? (
-              <AiOutlineEyeInvisible
-                className="show-btn"
-                onClick={() => setShow(false)}
-              />
+              <AiFillEye className="show-btn" onClick={() => setShow(false)} />
             ) : (
-              <AiOutlineEye
+              <AiFillEyeInvisible
                 className="show-btn"
                 onClick={() => setShow(true)}
               />
