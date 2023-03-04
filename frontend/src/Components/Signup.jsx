@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../Assets/logo.png";
 import load from "../Assets/load.gif";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 function Signup() {
   const navigate = useNavigate();
@@ -14,6 +15,8 @@ function Signup() {
   const [conf_password, setconf_password] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showpass, setShowpass] = useState(false);
+  const [showconf, setShowconf] = useState(false);
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -36,8 +39,7 @@ function Signup() {
     formData.append("password", password);
     formData.append("conf_password", conf_password);
 
-    formData.forEach((val, key) => {
-    });
+    formData.forEach((val, key) => {});
 
     const res = await fetch("http://localhost:8080/user/signup", {
       method: "POST",
@@ -46,7 +48,7 @@ function Signup() {
 
     const response = await res.json();
     setMessage(response.message);
-      setLoading(false);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -74,7 +76,7 @@ function Signup() {
           <span className="popup-body">
             <span className="popup-msg">{message}</span>
             <button
-              className="popup-btn warn-btn-yes"
+              className="popup-btn"
               onClick={() => {
                 if (message === "User Successfully Registerd") {
                   setMessage("");
@@ -112,23 +114,49 @@ function Signup() {
             }}
           />
 
-          <input
-            className="signup-input"
-            placeholder="Password"
-            type="password"
-            onChange={(e) => {
-              setpassword(e.target.value);
-            }}
-          />
+          <span className="pass">
+            <input
+              className="signup-input"
+              placeholder="Password"
+              type={showpass ? "text" : "password"}
+              onChange={(e) => {
+                setpassword(e.target.value);
+              }}
+            />
+            {showpass ? (
+              <AiOutlineEyeInvisible
+                className="show-btn"
+                onClick={() => setShowpass(false)}
+              />
+            ) : (
+              <AiOutlineEye
+                className="show-btn"
+                onClick={() => setShowpass(true)}
+              />
+            )}
+          </span>
 
-          <input
-            className="signup-input"
-            placeholder="Confirm Password"
-            type="password"
-            onChange={(e) => {
-              setconf_password(e.target.value);
-            }}
-          />
+          <span className="pass">
+            <input
+              className="signup-input"
+              placeholder="Confirm Password"
+              type={showconf ? "text" : "password"}
+              onChange={(e) => {
+                setconf_password(e.target.value);
+              }}
+            />
+            {showconf ? (
+              <AiOutlineEyeInvisible
+                className="show-btn"
+                onClick={() => setShowconf(false)}
+              />
+            ) : (
+              <AiOutlineEye
+                className="show-btn"
+                onClick={() => setShowconf(true)}
+              />
+            )}
+          </span>
 
           <button className="btn login-btn" onClick={handleSignup}>
             Signup

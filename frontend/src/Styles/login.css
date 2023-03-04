@@ -43,6 +43,7 @@
   width: 75vw;
   position: absolute;
   opacity: 0.8;
+  border-radius: 0.25rem;
 }
 
 .dot {
@@ -131,4 +132,17 @@ h1, h4{
 
 .logo{
   width: 5rem;
+}
+
+.pass{
+  width: 100%;
+  position: relative;
+}
+
+.show-btn{
+  position:absolute;
+  right: 2%;
+  top: 20%;
+  font-size: 1.5rem;
+  opacity: 0.6;
 }

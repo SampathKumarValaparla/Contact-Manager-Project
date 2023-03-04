@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Design from "./Design";
 import logo from "../Assets/logo.png";
 import load from "../Assets/load.gif";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 function Login() {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [show, setShow] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -38,8 +40,8 @@ function Login() {
       sessionStorage.setItem("token", response.token);
       setEmail("");
       setPassword("");
-      setLoading(false);
     }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -98,14 +100,27 @@ function Login() {
             }}
           />
 
-          <input
-            className="signup-input"
-            placeholder="Password"
-            type="password"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
+          <span className="pass">
+            <input
+              className="signup-input"
+              placeholder="Password"
+              type={show ? "text" : "password"}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+            {show ? (
+              <AiOutlineEyeInvisible
+                className="show-btn"
+                onClick={() => setShow(false)}
+              />
+            ) : (
+              <AiOutlineEye
+                className="show-btn"
+                onClick={() => setShow(true)}
+              />
+            )}
+          </span>
 
           <button
             className="btn login-btn"
