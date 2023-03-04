@@ -10,14 +10,42 @@ app.use(fileupload());
 app.use(express.json());
 
 app.get("/", async (req, res) => {
+  let data;
   const page = req.query.page;
   const total = req.query.total;
+  const sort = req.query.sort;
+  if (sort == "newfirst" || sort == "") {
+    data = await contacts
+      .find({ user: req.user._id })
+      .sort({ createdAt: -1 })
+      .skip((page - 1) * total)
+      .limit(total);
+  } else if (sort == "newlast") {
+    data = await contacts
+      .find({ user: req.user._id })
+      .sort({ createdAt: 1 })
+      .skip((page - 1) * total)
+      .limit(total);
+  } else if (sort == "az") {
+    data = await contacts
+      .find({ user: req.user._id })
+      .sort({ name: 1 })
+      .skip((page - 1) * total)
+      .limit(total);
+  } else if (sort == "za") {
+    data = await contacts
+      .find({ user: req.user._id })
+      .sort({ name: -1 })
+      .skip((page - 1) * total)
+      .limit(total);
+  } else if (sort == "email") {
+    data = await contacts
+      .find({ user: req.user._id })
+      .sort({ email: 1 })
+      .skip((page - 1) * total)
+      .limit(total);
+  }
   const alldata = await contacts.find({ user: req.user._id }).sort({ name: 1 });
-  const data = await contacts
-    .find({ user: req.user._id })
-    .sort({ name: 1 })
-    .skip((page - 1) * total)
-    .limit(total);
   res.status(200).json({
     alldata: alldata,
     data: data,

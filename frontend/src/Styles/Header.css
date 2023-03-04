@@ -8,7 +8,7 @@
   height: 8vh;
 }
 
-.logo {
+.logo-text {
   font-size: 1.8rem;
   font-weight: 800;
 }
@@ -100,4 +100,15 @@
 
 .search-data:hover{
 background: #89e2ff;
+}
+
+.logo-header{
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 1rem;
+}
+
+.header-logo{
+  width: 2.8rem;
 }

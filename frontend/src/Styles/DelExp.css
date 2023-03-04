@@ -5,7 +5,7 @@
   padding: 1rem 2rem;
 }
 
-.filter {
+.sort {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,4 +53,8 @@
 
 .delexp-btn:hover{
   background: rgb(231, 231, 231);
+}
+
+.options{
+  font-weight: 600;
 }

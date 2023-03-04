@@ -16,8 +16,11 @@ export default function Contact() {
   const [alldata, setAlldata] = useState([]);
   const [searchdata, setSearchdata] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [sort, setSort] = useState("");
 
   const value = {
+    sort,
+    setSort,
     data,
     setData,
     alldata,

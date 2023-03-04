@@ -8,7 +8,7 @@ import { dataContext } from "./Contact";
 import load from "../Assets/load.gif";
 
 function Table() {
-  const { data, setData, alldata, setAlldata, searchdata } =
+  const { data, setData, alldata, setAlldata, searchdata,sort } =
     useContext(dataContext);
 
   const [checked, setChecked] = useState(false);
@@ -22,7 +22,7 @@ function Table() {
   function getData() {
     setTableload(true);
     const token = sessionStorage.getItem("token");
-    fetch(`http://localhost:8080/contact?page=${page}&total=8`, {
+    fetch(`http://localhost:8080/contact?page=${page}&total=8&sort=${sort}`, {
       method: "GET",
       headers: { Authorization: token },
     })
@@ -109,12 +109,12 @@ function Table() {
             </tr>
           </thead>
           {tableload ? (
-            <div className="loading-table">
-              <img src={load} className="loading-table-size" />
-            </div>
+            <span className="loading-table">
+              <img src={load} className="loading-table-size" alt="loading"/>
+            </span>
           ) : (
             <tbody>
-              {(searchdata.length != 0 ? searchdata : data)?.map((data) => {
+              {(searchdata.length !== 0 ? searchdata : data)?.map((data) => {
                 return (
                   <tr key={data._id}>
                     <td>
@@ -161,7 +161,7 @@ function Table() {
           <button
             className="page-btn"
             onClick={() => setPage(page - 1)}
-            disabled={page == 1 ? true : false}
+            disabled={page === 1 ? true : false}
           >
             {"<"}
           </button>
@@ -170,7 +170,7 @@ function Table() {
             className="page-btn"
             onClick={() => setPage(page + 1)}
             disabled={
-              alldata.length < 8 || page == parseInt(alldata.length / 8) + 1
+              alldata.length < 8 || page === parseInt(alldata.length / 8) + 1
                 ? true
                 : false
             }

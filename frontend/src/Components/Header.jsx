@@ -22,7 +22,9 @@ const Header = () => {
 
   return (
     <div className="header-container">
-      <div className="logo">Contact Manager</div>
+      <div className="logo-header">
+        <div className="logo-text">Contact Manager</div>
+      </div>
       <div className="search-container">
         <input
           type="text"
@@ -48,7 +50,7 @@ const Header = () => {
         </div>
       </div>
       <div className="sidebar">
-        <FaUserAlt size={15} />
+        <FaUserAlt size={20} />
         <span className="header-name">{user.username}</span>
       </div>
     </div>

@@ -2,15 +2,25 @@ import React, { useState, useEffect } from "react";
 import "../Styles/Login.css";
 import { useNavigate } from "react-router-dom";
 import Design from "./Design";
+import logo from "../Assets/logo.png";
+import load from "../Assets/load.gif";
 
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    if (!email || !password) {
+      setMessage("Fill all fields");
+      return;
+    }
+
+    setLoading(true);
 
     const formData = new FormData();
 
@@ -28,6 +38,7 @@ function Login() {
       sessionStorage.setItem("token", response.token);
       setEmail("");
       setPassword("");
+      setLoading(false);
     }
   };
 
@@ -46,12 +57,15 @@ function Login() {
 
   return (
     <>
+      {loading ? (
+        <div className="loading-div">
+          <img src={load} className="loading" />
+        </div>
+      ) : null}
       {message ? (
         <div className="popup-main">
           <span className="popup-body">
-            <span className="popup-msg">
-              {message}
-            </span>
+            <span className="popup-msg">{message}</span>
             <button
               className="popup-btn"
               onClick={() => {
@@ -72,7 +86,7 @@ function Login() {
       <div id="login">
         <Design />
         <form id="login_form">
-          <h1 className="login-heading">Logo</h1>
+          <img src={logo} className="logo" alt="logo" />
           <h4>Enter your credentials to access your account</h4>
 
           <input

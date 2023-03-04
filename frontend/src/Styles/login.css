@@ -128,3 +128,7 @@ h1, h4{
   font-weight: 600;
   color: #5f6c9e;
 }
+
+.logo{
+  width: 5rem;
+}

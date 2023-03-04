@@ -3,6 +3,8 @@ import "../Styles/Login.css";
 import Design from "./Design";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import logo from "../Assets/logo.png";
+import load from "../Assets/load.gif";
 
 function Signup() {
   const navigate = useNavigate();
@@ -11,14 +13,22 @@ function Signup() {
   const [password, setpassword] = useState("");
   const [conf_password, setconf_password] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSignup = async (e) => {
     e.preventDefault();
+
+    if (!email || !password || !username || !conf_password) {
+      setMessage("Fill all fields");
+      return;
+    }
 
     if (password.length < 6) {
       setMessage("Password should be more than 5 charecters");
       return;
     }
+
+    setLoading(true);
 
     const formData = new FormData();
     formData.append("username", username);
@@ -36,12 +46,13 @@ function Signup() {
 
     const response = await res.json();
     setMessage(response.message);
+      setLoading(false);
   };
 
   useEffect(() => {
     if (message) {
       setTimeout(() => {
-        if (message == "User Successfully Registerd") {
+        if (message === "User Successfully Registerd") {
           setMessage("");
           navigate("/");
         } else {
@@ -53,21 +64,24 @@ function Signup() {
 
   return (
     <>
+      {loading ? (
+        <div className="loading-div">
+          <img src={load} className="loading" />
+        </div>
+      ) : null}
       {message ? (
         <div className="popup-main">
           <span className="popup-body">
-            <span className="popup-msg">
-              {message}
-            </span>
+            <span className="popup-msg">{message}</span>
             <button
               className="popup-btn warn-btn-yes"
               onClick={() => {
-               if (message == "User Successfully Registerd") {
-                 setMessage("");
-                 navigate("/");
-               } else {
-                 setMessage("");
-               }
+                if (message === "User Successfully Registerd") {
+                  setMessage("");
+                  navigate("/");
+                } else {
+                  setMessage("");
+                }
               }}
             >
               OK
@@ -78,7 +92,7 @@ function Signup() {
       <div id="login">
         <Design />
         <form id="login_form">
-          <h1 className="login-heading">Logo</h1>
+          <img src={logo} className="logo" alt="logo" />
           <h4>Create New Account</h4>
 
           <input
