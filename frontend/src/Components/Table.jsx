@@ -83,7 +83,7 @@ function Table() {
                 <input
                   type="checkbox"
                   checked={checked}
-                  onClick={(e) => {
+                  onChange={(e) => {
                     if (e.target.checked) {
                       setChecked(true);
                       let arr = [];

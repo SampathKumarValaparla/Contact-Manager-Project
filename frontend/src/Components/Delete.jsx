@@ -75,6 +75,7 @@ export default function Delete({
             className="popup-btn"
             onClick={() => {
               setShowDelete(false);
+              setDeleteone("");
             }}
           >
             Cancel

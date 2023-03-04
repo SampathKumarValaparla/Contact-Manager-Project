@@ -47,8 +47,12 @@ function DelExp({ deleteData, setDeleteData, getData }) {
       ) : null}
 
       <span className="sort">
-        <select className="inputs" onChange={(e) => setSort(e.target.value)}>
-          <option className="options" value="newfirst" selected>
+        <select
+          className="inputs"
+          onChange={(e) => setSort(e.target.value)}
+          defaultValue="newfirst"
+        >
+          <option className="options" value="newfirst">
             Newest First
           </option>
           <option className="options" value="newlast">
