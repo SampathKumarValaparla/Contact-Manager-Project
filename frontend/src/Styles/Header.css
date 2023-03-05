@@ -1,0 +1,114 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 2rem;
+  background-color: #b3dfff;
+  color: #02161e;
+  height: 8vh;
+}
+
+.logo-text {
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.25rem;
+  /* overflow: hidden; */
+  position: relative;
+}
+
+.header-search {
+  padding: 10px;
+  border: none;
+  width: 30vw;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: text;
+  outline: none;
+  border-radius: 0.25rem;
+}
+
+.header-btn {
+  padding: 10px;
+  border: none;
+  background-color: #f44336;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.sidebar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-side {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-direction: column;
+}
+
+.header-name {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.logout-btn {
+  padding: 0.3rem;
+  border: 0;
+  background: #f44336;
+  border-radius: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.search-result {
+  position: absolute;
+  top: 110%;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  background: #63d8ff;
+  border-radius: 0.25rem;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.search-data{
+  padding: 0.8rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: ease-in-out 200ms;
+}
+
+.search-data:hover{
+background: #89e2ff;
+}
+
+.logo-header{
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 1rem;
+}
+
+.header-logo{
+  width: 2.8rem;
+}

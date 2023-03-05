@@ -1,0 +1,100 @@
+.popup-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgb(0, 0, 0, 0.6);
+  z-index: 10;
+}
+
+.popup-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  padding: 2rem 3rem;
+  border-radius: 0.25rem;
+  flex-direction: column;
+  gap: 1.3rem;
+  background: white;
+  max-width: 20vw;
+}
+
+.popup-icon {
+  font-size: 2rem;
+  color: #2da5fc;
+}
+
+.popup-heading {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.popup-drag {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #2da5fc;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  border: 2px dashed;
+  cursor: pointer;
+}
+
+.popup-drag p {
+  cursor: pointer;
+}
+
+.popup-btn {
+  background: #2da5fc;
+  color: white;
+  border: 0;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.popup-msg {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2da5fc;
+  text-align: center;
+}
+
+.popup-warn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.warn-btn-yes {
+  background: transparent;
+  color: black;
+  font-weight: 700;
+}
+
+.loading-div{
+width: 100vw;
+height: 100vh;
+position: absolute;
+top: 0;
+left: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 20;
+background: rgb(0, 0, 0, 0.6);
+}
+
+.loading{
+  width: 10rem;
+}

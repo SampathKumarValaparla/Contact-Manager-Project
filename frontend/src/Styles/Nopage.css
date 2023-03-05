@@ -1,0 +1,32 @@
+.nopage-main {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.nopage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  height: 100vh;
+  width: 40vw;
+  flex-direction: column;
+  font-weight: 800;
+  font-size: 3rem;
+  z-index: 1;
+  text-transform: uppercase;
+  color: rgb(51, 51, 51);
+  text-align: center;
+}
+
+.nopage-desc{
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.session-btn{
+  width: auto;
+}

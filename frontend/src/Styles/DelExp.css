@@ -1,0 +1,60 @@
+.delexp {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.sort {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.inputs {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #e2e2e2;
+  font-size: 0.9rem;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+}
+
+.filter-input {
+  cursor: text;
+}
+
+.delexp-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.delexp-btn {
+  padding: 0.5rem;
+  border: 0;
+  background: lightgray;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  transition: ease-in-out 200ms;
+}
+
+.delexp-btn:hover{
+  background: rgb(231, 231, 231);
+}
+
+.options{
+  font-weight: 600;
+}

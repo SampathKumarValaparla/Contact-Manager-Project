@@ -1,0 +1,96 @@
+.table-container {
+  width: 97%;
+  margin: auto;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.table th {
+  padding: 0.7rem;
+  background-color: #c6eff9;
+  font-weight: 700;
+}
+
+.table td {
+  padding: 0.8rem;
+  font-weight: 600;
+}
+
+tbody tr:nth-child(even) td {
+  background: #b2dfff4f;
+}
+
+.table-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.2rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  position: absolute;
+  bottom: 0;
+}
+
+.page-btn {
+  font-weight: 700;
+  font-size: 1.5rem;
+  background: #63d8ff;
+  border-radius: 0.25rem;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  transition: ease-in-out 200ms;
+}
+
+.page {
+  width: 1.5rem;
+  text-align: center;
+}
+
+.page-btn:hover {
+  background: #89e2ff;
+}
+
+.page-hidden {
+  display: none;
+}
+
+.page-div {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  bottom: 3rem;
+}
+
+.loading-table {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+}
+
+.loading-table-size {
+  width: 8rem;
+}
